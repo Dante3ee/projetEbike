@@ -1,5 +1,4 @@
 #include <Adafruit_NeoPixel.h>
-#include <Wire.h>
 
 #define PIN_LED 6        // Pin data pour les LED
 #define NUMPIXELS 2      // Nb de LED
@@ -55,9 +54,9 @@ void loop() {
     
     // LED 1 : Affichage de la vitesse 
     // Éteint tout sous 8 km/h
-    // 8 → 10 km/h : fondue bleu -> vert
+    // 8 → 10 km/h : fondue bleu → vert
     // 10 → 11 km/h : vert pur
-    // 11 → 14 km/h : fondue vert -> jaune
+    // 11 → 14 km/h : fondue vert → jaune
     // ≥ 14 km/h : jaune pur
 
     if (vitesse < VITESSE_LED_ON) {
@@ -94,7 +93,7 @@ void loop() {
 
     unsigned long elapsed = millis() - debutTimer;
     uint8_t etape =  min(elapsed / INTERVALLE, 5UL);     // 0 à 5 (Violet à rouge)
-    float tTimer = (float)(elapsed % INTERVALLE) / INTERVALLE; // 0.0 -> 1.0
+    float tTimer = (float)(elapsed % INTERVALLE) / INTERVALLE; // 0.0 → 1.0
 
     if (etape >= 5) {
         // Temps écoulé : rouge fixe
@@ -110,7 +109,10 @@ void loop() {
     pixels.show();  //afficher les changements de couleurs
 
     // reset du timer et du nb d'impulsions A METTRE EN DERNIER DANS LA LOOP
+    noInterrupts();
     nombreImpulsions = 0;
+    interrupts()
+
     tempsDebutMesure = millis();
   }
 }
