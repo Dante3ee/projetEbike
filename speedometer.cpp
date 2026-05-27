@@ -54,9 +54,9 @@ void loop() {
     
     // LED 1 : Affichage de la vitesse 
     // Éteint tout sous 8 km/h
-    // 8 → 10 km/h : fondue bleu → vert
+    // 8 → 10 km/h : fondue bleue → vert
     // 10 → 11 km/h : vert pur
-    // 11 → 14 km/h : fondue vert → jaune
+    // 11 → 14 km/h : fondue verte → jaune
     // ≥ 14 km/h : jaune pur
 
     if (vitesse < VITESSE_LED_ON) {
@@ -77,7 +77,7 @@ void loop() {
         pixels.setPixelColor(0, pixels.Color(10, 10, 0));
     }
 
-    // LED 2 : timer 2h  violet → bleu → vert → jaune → orange → rouge
+    // LED 2 : timer 2h (20 min par couleur)  violet → bleu → vert → jaune → orange → rouge
 
     static unsigned long debutTimer = millis();
     static constexpr unsigned long INTERVALLE = 20UL * 60 * 1000; // 20 min en ms
@@ -108,7 +108,7 @@ void loop() {
 
     pixels.show();  //afficher les changements de couleurs
 
-    // reset du timer et du nb d'impulsions A METTRE EN DERNIER DANS LA LOOP
+    // reset du timer et du nb d'impulsions.
     noInterrupts();
     nombreImpulsions = 0;
     interrupts()
